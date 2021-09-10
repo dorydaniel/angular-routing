@@ -1,0 +1,13 @@
+<h1>Home</h1>
+<a [routerLink]="['/about']">About us</a>
+<p>
+  {{
+    currency.split("|").indexOf("LBP") === 0
+      ? (amount.split("|")[0] | number) +
+        " | " +
+        (amount.split("|")[1] | number: "1.2-2")
+      : (amount.split("|")[0] | number: "1.2-2") +
+        " | " +
+        (amount.split("|")[1] | number)
+  }}
+</p>
