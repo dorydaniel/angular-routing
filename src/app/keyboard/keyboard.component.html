@@ -1,0 +1,18 @@
+<div class="key-div" (blur)="closeKeyboard($event)" [tabindex]="1" #keydiv>
+  <input
+    type="text"
+    placeholder="Password"
+    class="key-input"
+    (focus)="openKeyboard()"
+    [ngModel]="password"
+  />
+  <div *ngIf="showKeyboard" class="key-pad">
+    <div
+      *ngFor="let number of numbers"
+      class="key-num"
+      (click)="keynumClicked(number)"
+    >
+      {{ number }}
+    </div>
+  </div>
+</div>

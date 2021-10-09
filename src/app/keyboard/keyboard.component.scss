@@ -1,0 +1,23 @@
+.key-div {
+  display: inline-block;
+
+  .key-input {
+    width: 200px;
+  }
+
+  .key-pad {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: khaki;
+    width: 200px;
+    border: 1px solid gray;
+    .key-num {
+      width: 20%;
+      padding: 10px 16px;
+      outline: 1px gray solid;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}

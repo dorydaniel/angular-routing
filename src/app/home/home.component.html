@@ -11,3 +11,20 @@
         (amount.split("|")[1] | number)
   }}
 </p>
+
+<input
+  type="text"
+  amountFilter
+  [amount]="testAmount"
+  [(ngModel)]="testAmount"
+/>
+<div>
+  <form [formGroup]="loginForm" (ngSubmit)="formSubmit()" #logForm>
+    <input type="text" formControlName="name" #nameInput />
+    <app-keyboard
+      [formName]="loginForm"
+      (updatePasswordEvent)="updatePassword($event)"
+    ></app-keyboard>
+    <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+  </form>
+</div>
