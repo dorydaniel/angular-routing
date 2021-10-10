@@ -17,7 +17,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class KeyboardComponent implements OnInit, AfterViewInit {
   @Input() formName: FormGroup;
-  numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '<='];
   showKeyboard = false;
   @Output() updatePasswordEvent = new EventEmitter<string>();
   password = '';
@@ -58,8 +58,12 @@ export class KeyboardComponent implements OnInit, AfterViewInit {
     }
   }
 
-  keynumClicked(number: number) {
-    this.password += number + '';
+  keynumClicked(number: string) {
+    if (number === '<=') {
+      this.password = this.password.substring(0, this.password.length - 1);
+    } else if (this.password.length < 6) {
+      this.password += number;
+    }
     this.updatePasswordEvent.emit(this.password);
   }
 }

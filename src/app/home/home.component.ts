@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   testAmount = '';
 
-  @ViewChild('nameInput') nameInput: ElementRef<HTMLInputElement>;
   @ViewChild('logForm') logForm: ElementRef<HTMLFormElement>;
 
   loginForm = new FormGroup({
@@ -36,7 +35,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     let self = this;
     this.logForm.nativeElement.addEventListener('keydown', function (event) {
+      // to catch the "Enter" keydown anywhere in the form,
+      // including in the virtual keyboard
       if (event.code === 'Enter' && self.loginForm.valid) {
+        // prevent the form from submitting twice
         event.preventDefault();
         self.formSubmit();
       }
@@ -48,6 +50,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   formSubmit() {
+    // we check if form is pending before submitting it,
+    // because we have an event listener on keydown "Enter",
+    // so that way we can't spam "Enter"
     if (!this.loginForm.pending) {
       console.log(this.loginForm.value);
     }

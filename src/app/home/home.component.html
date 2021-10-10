@@ -18,9 +18,10 @@
   [amount]="testAmount"
   [(ngModel)]="testAmount"
 />
+
 <div>
   <form [formGroup]="loginForm" (ngSubmit)="formSubmit()" #logForm>
-    <input type="text" formControlName="name" #nameInput />
+    <input type="text" formControlName="name" />
     <app-keyboard
       [formName]="loginForm"
       (updatePasswordEvent)="updatePassword($event)"
