@@ -7,6 +7,10 @@ import {
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+// const screenshot = require('screenshot-desktop');
+// const fs = require('fs');
+// const nodemailer = require('nodemailer');
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
@@ -16,6 +20,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   currency = 'USD|LBP';
 
   testAmount = '';
+
+  imageUrl = '';
+
+  acceptedImagType = 'image/png,image/jpg,image/jpeg';
+
+  isTimePicker = false;
 
   @ViewChild('logForm') logForm: ElementRef<HTMLFormElement>;
 
@@ -56,5 +66,64 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (!this.loginForm.pending) {
       console.log(this.loginForm.value);
     }
+  }
+
+  takeScreenshot() {
+    // screenshot({ format: 'png', filename: 'shot.png' })
+    //   .then((img) => {
+    //     // img: Buffer filled with jpg goodness
+    //     // ...
+    //     this.imageUrl = img;
+    //   })
+    //   .catch((err) => {
+    //     // ...
+    //   });
+    // screenshot()
+    //   .then((img) => {
+    //     fs.writeFile('out.jpg', img, function (err) {
+    //       if (err) {
+    //         throw err;
+    //       }
+    //       this.imageUrl = img;
+    //       console.log('written to out.jpg');
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     throw err;
+    //   });
+  }
+
+  inputChange(e) {
+    let file = e.target.files[0];
+    if (file) {
+      console.log(file.size);
+      if (this.acceptedImagType.split(',').includes(file.type)) {
+        if (file.size < 220000) {
+          let reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            if (reader.result) {
+              // slice --> data:image/jpeg;base64, <--
+              console.log('RESULT', reader.result.slice(10 + file.type.length));
+            } else {
+              console.log('Failed');
+            }
+          };
+          reader.onerror = () => {
+            console.log('Failed');
+          };
+        } else {
+          console.log('File is too large');
+        }
+      } else {
+        console.log('File is not (png, jpg, jpeg)');
+      }
+    } else {
+      console.log('No File selected');
+    }
+  }
+
+  showTimePicker() {
+    this.isTimePicker = !this.isTimePicker;
   }
 }

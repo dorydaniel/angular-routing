@@ -1,0 +1,19 @@
+<div>
+    <div *ngIf="!isEdit">
+        <p style="display: inline-block">{{ initialValue }}</p>
+        <button (click)="editClick()" style="padding: 4px">«»</button>
+    </div>
+
+    <div *ngIf="isEdit">
+        <input *ngIf="!isPhone" type="text" [value]="initialValue" #defaultInput />
+
+        <input *ngIf="isPhone" type="text" #countryCodeInput />
+        <input *ngIf="isPhone" type="text" style="margin-left: 8px; margin-right: 8px" #areaCodeInput />
+        <input *ngIf="isPhone" type="text" #numberCodeInput />
+
+        <button (click)="doneEdit()" style="margin-left: 8px; margin-right: 8px; padding: 4px">
+            ►
+        </button>
+        <button (click)="canelEdit()" style="padding: 4px">X</button>
+    </div>
+</div>

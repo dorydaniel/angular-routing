@@ -9,6 +9,9 @@ import { AboutComponent } from './about/about.component';
 
 import { AmountDirective } from './home/amount.directive';
 import { KeyboardComponent } from './keyboard/keyboard.component';
+import { InlineEditComponent } from './inline-edit/inline-edit.component';
+import { TimePickerComponent } from './time-picker/time-picker.component';
+import { CustomTimePickerComponent } from './custom-time-picker/custom-time-picker.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { KeyboardComponent } from './keyboard/keyboard.component';
     AboutComponent,
     AmountDirective,
     KeyboardComponent,
+    InlineEditComponent,
+    TimePickerComponent,
+    CustomTimePickerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
