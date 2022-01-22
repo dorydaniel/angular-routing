@@ -14,12 +14,23 @@ export class CustomTimePickerComponent implements OnInit {
   ngOnInit(): void {}
 
   addEvent(event) {
-    if (event.srcElement.id == 'input-hour') {
+    if (
+      event.srcElement.id == document.getElementsByClassName('tp-input')[0].id
+    ) {
       this.selectedInput = 'input-hour';
     }
-    if (event.srcElement.id == 'input-minute') {
+    if (
+      event.srcElement.id == document.getElementsByClassName('tp-input')[1].id
+    ) {
       this.selectedInput = 'input-minute';
     }
+
+    // if (event.srcElement.id == 'input-hour') {
+    //   this.selectedInput = 'input-hour';
+    // }
+    // if (event.srcElement.id == 'input-minute') {
+    //   this.selectedInput = 'input-minute';
+    // }
 
     if (this.isOneTimeClick) {
       document.getElementById('input-hour').addEventListener('focus', () => {
